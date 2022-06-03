@@ -1,0 +1,149 @@
+#include <iostream>
+#include<stdlib.h>
+using namespace std;
+
+int getInteger()
+{
+   int option;
+   cout<<"\nEnter Your Choice: ";
+   cin>>option;
+   if ((0>option)||(option>6))
+   {
+       while ((0>option)||(option>6))
+       {
+           cout<<"Please Enter Valid integer between 1 and 5: ";
+           cin>>option;           
+       }
+   }
+   return option;
+  
+}
+  
+int getNumDigits(int number)
+{
+   int count = 0;
+   while (number != 0) {
+number= number / 10;
+count++;
+}
+return count;
+   }
+  
+   int getNthDigit(int number,int n)
+   {
+       for (int i = 1; i < n; i++)
+number= number/ 10;   
+        return number % 10;
+   }
+  
+   int getSumDigits(int number)
+   {
+       int sum=0;
+       while (number != 0)
+       {
+       sum=sum+number%10;
+number= number / 10;   
+}
+       return sum;
+   }
+  
+   bool isPalindrome(int number)
+   {
+       int revnum=0;
+       int orgnum=number;
+       while (number != 0)
+       {
+       revnum=revnum*10+number%10;
+number= number / 10;   
+            }   
+       return revnum==orgnum;;
+
+   }
+int main()
+{
+  
+cout<<"1.Find the number of digits in an integer";
+cout<<"\n2.Find the nth digit in an integer";
+cout<<"\n3.Find the sum of all the digits in an integer";
+cout<<"\n4.Is the Integer a palindrome ";
+cout<<"\n5.Quit";
+int integer,position,menu=1;
+while(menu!=5)
+{
+   menu=getInteger();
+switch(menu)
+{
+   case 1:
+       {          
+       cout<<"Enter a positive Integer: ";
+       cin>>integer;
+       if (integer<0)
+       while (0>integer)
+       {
+       cout<<"Enter a positive Integer: ";
+       cin>>integer;            
+           }
+           cout<<integer<<" has "<<getNumDigits(integer)<<" digits";
+           break;                 
+       }
+      
+       case 2:
+       {          
+       cout<<"Enter a positive Integer: ";
+       cin>>integer;
+       if (integer<0)
+       while (0>integer)
+       {
+       cout<<"Enter a positive Integer: ";
+       cin>>integer;            
+           }
+           cout<<"Enter a position: ";
+       cin>>position;
+       if ((1>position)||(position>getNumDigits(integer)))
+       while ((1>position)||(position>getNumDigits(integer)))
+       {
+       cout<<"Enter a valid position: ";
+       cin>>position;            
+           }
+           cout<<"Digit No "<<position<<" is "<<getNthDigit(integer,position)   ;
+           break;             
+       }
+      
+       case 3:
+       {          
+       cout<<"Enter a positive Integer: ";
+       cin>>integer;
+       if (integer<0)
+       while (0>integer)
+       {
+       cout<<"Enter a positive Integer: ";
+       cin>>integer;            
+           }
+          
+           cout<<"Sum of digits of "<<integer<<" is "<<getSumDigits(integer)   ;
+           break;             
+       }
+           case 4:
+       {          
+       cout<<"Enter a positive Integer: ";
+       cin>>integer;
+       if (integer<0)
+       while (0>integer)
+       {
+       cout<<"Enter a positive Integer: ";
+       cin>>integer;            
+           }
+          
+           cout<<integer<<" is ";
+           if (isPalindrome(integer))
+           cout<<"Palindrome";
+           else
+           cout<<"Not a palindrome";
+           break;
+       }
+   }
+
+}
+  
+return 0;
+}
